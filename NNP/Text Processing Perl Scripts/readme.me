@@ -1,0 +1,82 @@
+# Text Processing Perl Scripts
+
+## Overview
+Three Perl scripts for processing text files with different filtering criteria. All versions read from external text files and use stopword/exclusion lists for filtering.
+
+## Files Description
+
+### V1.pl
+**Purpose**: Extracts proper nouns (capitalized words) excluding stopwords.
+
+**Features**:
+- Splits text into sentences
+- Filters capitalized words not in stopwords list
+- Case-insensitive stopword comparison
+- Regex pattern: `^[A-Z][a-z]+`
+
+**Issues**:
+- `use strict` appears after code execution
+- Uninitialized variables
+- Inconsistent file handling
+
+### V2.pl  
+**Purpose**: Attempts to find words longer than stopwords (contains errors).
+
+**Features**:
+- Reads stopwords from file
+- Compares word lengths against stopwords
+- Splits text by periods
+
+**Issues**:
+- Undefined variable `$a` in comparison
+- Return value of `wordBelongTo` ignored
+- Uses `gt` (string comparison) instead of `>` (numeric)
+
+### V3.pl
+**Purpose**: Filters out words matching stopwords using regex (contains errors).
+
+**Features**:
+- Regex pattern matching instead of exact comparison
+- Uses "exclude.txt" as stopword source
+- Attempts to print words not in exclusion list
+
+**Issues**:
+- Inefficient while loop in matching function
+- Incorrect comparison `$w == 0` instead of checking function return
+- Potential regex matching issues
+
+## Common Problems
+- Inconsistent variable usage
+- Limited error handling
+- Inefficient text processing
+- Logical errors in conditions
+- Poor code organization
+
+## Usage
+
+### Prerequisites
+- Perl 5.x or higher
+- Input files in same directory:
+  - `text.txt` (main text file)
+  - `stopwords.txt` (for V1.pl and V2.pl)
+  - `exclude.txt` (for V3.pl)
+
+### Execution
+```bash
+perl V1.pl
+perl V2.pl
+perl V3.pl
+
+Notes
+- V1.pl is the most functional version
+- V2.pl and V3.pl contain significant logical errors
+- All scripts need input files present to avoid errors
+- Expect uninitialized variable warnings in some versions
+
+Recommendations for Improvement
+1. Add use strict and use warnings at top
+2. Initialize all variables properly
+3. Implement comprehensive error handling
+4. Test regex patterns thoroughly
+5. Use meaningful variable names
+6. Add proper code documentation
